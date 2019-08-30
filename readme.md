@@ -1,14 +1,14 @@
-##初始化
+## 初始化
 合适目录下，新建文件夹nodejs-webcrawler 打开命令行终端，进入当前目录执行npm init，初始化package.json文件
 
-##安装依赖
+## 安装依赖
 express用来搭建简单的服务器，superagent用来请求页面,cheerio形如jquery处理页面元素
 
 npm install express -S
 npm install superagent -S
 npm install cheerio -S
 
-##使用express启动服务器
+## 使用express启动服务器
 在nodejs-webcrawler目录下新建index.js文件 index.js
 
 ```
