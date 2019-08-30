@@ -1,16 +1,17 @@
-初始化
+##初始化
 合适目录下，新建文件夹nodejs-webcrawler 打开命令行终端，进入当前目录执行npm init，初始化package.json文件
 
-安装依赖
+##安装依赖
 express用来搭建简单的服务器，superagent用来请求页面,cheerio形如jquery处理页面元素
 
 npm install express -S
 npm install superagent -S
 npm install cheerio -S
 
-使用express启动服务器
+##使用express启动服务器
 在nodejs-webcrawler目录下新建index.js文件 index.js
 
+```
 const express = require('express');
 const app = express();
 
@@ -22,6 +23,7 @@ let server = app.listen(3000, function() {
 app.get('/', async (req, res, next) => {
     res.send('hello World!'); // 输出到浏览器
 })
+```
 
 保存！
 
@@ -34,6 +36,7 @@ app.get('/', async (req, res, next) => {
 访问页面数据
 爬取百度新闻页面(http://news.baidu.com/)
 
+```
 const accessPage = (url, callback) => {
     // 访问页面
     const superagent = require('superagent');
@@ -66,9 +69,12 @@ const getPageInfo = (res) => {
     
     return hostNews;
 }
+```
 
 保存数据到EXCEl
 保存数据到excel
+
+```
 const saveToExcel = (ws_data, fileName) => {
     const XLSX = require('xlsx');
     // 保存到excel
@@ -77,7 +83,11 @@ const saveToExcel = (ws_data, fileName) => {
     XLSX.utils.book_append_sheet(wb, ws, 'sheet1');  // 将sheet写入workbook
     XLSX.writeFile(wb, fileName);
 }
+```
+
 保存到excel的数据需要特定的格式，接下来格式化数据
+
+```
 // 原始json数据
 const origin_data = [
 {
@@ -167,8 +177,11 @@ module.exports = {
     formatData,
     saveToExcel,
 }
-主文件index.js
 
+```
+
+主文件index.js
+```
 const express = require('express');
 const app = express();
 const util = require('./util.js');
@@ -207,40 +220,4 @@ const getPageInfo = (res) => {
     
     return hostNews;
 }
-
-上传到github
-本地文件commit 当前目录下
-git init
-git add .
-当输入git add .，意识到把node_mdules也上传到暂存区了，需要撤销
-
-先检查下当前哪些文件已到暂存区
-
-git status
-暂存区文件 node_modules文件夹下，的确在！！ 输入
-
-git reset HEAD --  node_modules
-git reset HEAD -- .DS_Store
-为了防止不需要的文件上传至github，添加.gitignore文件 .gitignore文件
-
-将.gitignore文件一并上传
-
-git add .
-git commit -m 'paichong save to excel'
-github创建同名repository github创建repository
-
-push到github上 终端命令行输入
-
-git remote add origin https://github.com/your_github_address/nodejs-webcrawler.git
-git push origin  master
-
-从github下载下来，运行
-npm install
-node index.js
-打开http://localhost:3000/查看输出 查看out.xlsx out.xlsx
-
-github源码地址
-
-喜欢就star吧
-
-参考网址 nodejs写爬虫 保存数据到excel export 多个module git撤销
+```
