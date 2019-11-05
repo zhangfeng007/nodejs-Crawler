@@ -11,7 +11,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
-    "mongoose": "^5.6.11",
+    "mongoose": "^5.7.5",
     "superagent": "^5.1.0",
     "xlsx": "^0.15.1"
   }
